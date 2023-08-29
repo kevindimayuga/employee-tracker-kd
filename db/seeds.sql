@@ -1,19 +1,19 @@
 INSERT INTO department (department_name)
 VALUES  ("Engineering"),
-        ("Sales"),
+        ("Accounting"),
         ("Finance"),
-        ("Legal"),
+        ("HR"),
         ("Marketing");
 
 INSERT INTO job (title, salary, department_id)
 VALUES  ("Engineer", 85000, 1),
-        ("Senior Engineer", 125000, 1),
-        ("CFO", 350000, 3),
-        ("Chief Counsel", 300000, 4);
+        ("Senior Accountant", 120000, 1),
+        ("Chief Financial Officer", 300000, 3),
+        ("Human Resources Director", 200000, 4);
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VALUES  ('Johnnie', 'Random', 1, 2),
-        ('James', 'Smith', 1, null),
-        ('Ronnie', 'Manning', 1, 2),
-        ('Jimmy', 'Jones', 2, 2),
-        ('Larry', 'Legal', 4, null);
+VALUES  ('Theodore', 'Walsh', 1, 2),
+        ('Heather', 'Gonzales', 1, null),
+        ('Peggy', 'Murphy', 1, 2),
+        ('John', 'Bailey', 2, 2),
+        ('Dylan', 'Reed', 4, null);
