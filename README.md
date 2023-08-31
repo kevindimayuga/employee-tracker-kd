@@ -13,16 +13,19 @@ The motivation behind this project is to create a command-line application from 
 - GitHub Repo URL: https://github.com/kevindimayuga/employee-tracker-kd
 - GitHub Pages WebPage Deployment URL: n/a
 
-- Since this will be a command-line application and not a webpage application, you can use the following [LINK](https://drive.google.com/file/d/1n4jqby6HYdnsotiH87S_bE5M_-LJ9Jzr/view) to access a video walkthrough on how to use the employee tracker command-line application.
-    - [Employee Tracker Video Walkthrough](https://drive.google.com/file/d/1n4jqby6HYdnsotiH87S_bE5M_-LJ9Jzr/view)
-
 ## Webpage Screenshot
 
 #### CLI application test example:
-![employee tracker command line example screenshot](./assets/images/cli-application-test-kd.PNG)
+![employee tracker command line example screenshot](./assets/images/Employer%20Tracker%20CLI%20Screenshot.PNG)
 
-#### Generated SVG Logo test example:
-![employee tracker example screenshot](./assets/images/generated-readme-example-kd.PNG)
+### GIF of App Functionality
+
+![]()
+
+### Full Video Walkthrough
+
+- Since this will be a command-line application and not a webpage application, you can use the following [LINK]() to access a video walkthrough on how to use the employee tracker command-line application.
+    - [Employee Tracker Video Walkthrough]()
 
 ## Table of Contents
 
@@ -41,12 +44,11 @@ The motivation behind this project is to create a command-line application from 
 The following steps were taken to complete the project:
 - Review the purpose of the project, the user story and acceptance criteria
 - Review the basics to starting a command-line application
-- Review JavaScript
-- Review Node.js
+- Review JavaScript, Node.js, Express and MySQL
 - Create Professional README file
 - Write code
 - Add website image/gif to README file
-- Add link to video walkthrough on how to use README generator command-line application
+- Add link to video walkthrough on how to use Employee Tracker command-line application
 - Submit URL to GitHub Repo and link to video walkthrough
 
 JavaScript Updates
@@ -69,8 +71,10 @@ MySQL Updates
 - Clone repo onto local device
 - Open repo in local CLI
 - Make sure node packages are installed by running 'npm i'
-- Run 'node index.js' in CLI
--
+- Run 'npm start' in CLI
+- Select an option from the list
+- Depending on selection, follow prompts or view data from employees database
+- Use and update database for employees as needed to track any necessary information
 
 ## Credits
 
