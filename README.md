@@ -1,6 +1,6 @@
 # Employee Tracker
 
-This repo is for module twelve's challenge assignment.
+M12 - This repo is a Content Management System (CMS) that allows non-developers to easily view and interact with information stored in databases about a company's employees.
 
 ## Description
 
