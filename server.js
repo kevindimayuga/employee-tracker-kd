@@ -45,7 +45,7 @@ const userSelection = () => {
                 'Exit'
             ]
         }
-    // This will then take the user's selection and run the appropriate function
+        // This will then take the user's selection and run the appropriate function
     ]).then((answers) => {
         const selection = answers.userSelection;
         if (selection === 'View All Employees') {
@@ -69,7 +69,36 @@ const userSelection = () => {
     });
 };
 
+// View All Employees
+const viewAllEmployees = () => {
+    const sql = `SELECT * FROM employee`;
+    // This will query the database and return all employees
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.error('Error fetching all employees', err);
+            return;
+        }
+        console.log('All Employees:');
+        // This will display all employees in a table
+        console.table(results);
+        // This will call the userSelection function to restart the server
+        userSelection();
+    });
+};
 
+// Add an Employee
+
+// Update an Employee Role
+
+// View All Roles
+
+// Add a Role
+
+// View All Departments
+
+// Add a Department
+
+// Exit
 
 // This will call the userSelection function to start the server
 userSelection();
