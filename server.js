@@ -71,12 +71,24 @@ const userSelection = () => {
 
 // View All Employees
 const viewAllEmployees = () => {
-    const sql = `SELECT employee.id,
-    employee.first_name,
-    employee.last_name,
-    role.title,
-    department.department_name AS 'department',`;
     // use JOIN to get manager name
+    const sql = 
+    `SELECT
+        e.id,
+        e.first_name,
+        e.last_name,
+        r.title,
+        d.department_name AS 'department',
+        r.salary,
+        CONCAT(m.first_name, ' ', m.last_name) AS 'manager'
+    FROM
+        employee AS e
+    JOIN
+        role AS r ON e.role_id = r.id
+    JOIN
+        department AS d ON r.department_id = d.id
+    LEFT JOIN
+        employee AS m ON e.manager_id = m.id;`;
 
     // This will query the database and return all employees
     db.query(sql, (err, results) => {
