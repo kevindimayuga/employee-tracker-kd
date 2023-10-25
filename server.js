@@ -71,7 +71,13 @@ const userSelection = () => {
 
 // View All Employees
 const viewAllEmployees = () => {
-    const sql = `SELECT * FROM employee`;
+    const sql = `SELECT employee.id,
+    employee.first_name,
+    employee.last_name,
+    role.title,
+    department.department_name AS 'department',`;
+    // use JOIN to get manager name
+
     // This will query the database and return all employees
     db.query(sql, (err, results) => {
         if (err) {
@@ -87,6 +93,23 @@ const viewAllEmployees = () => {
 };
 
 // Add an Employee
+const addEmployee = () => {
+    const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id)`;
+    const params = [body.first_name, body.last_name, body.role_id, body.manager_id];
+    db.query(sql, params, (err, results) => {
+        if (err) {
+            console.error('Error adding an employee', err);
+            return;
+        }
+        results.json({
+            message: 'success',
+            data: body
+        });
+        console.log('Employee Added!');
+        // This will call the userSelection function to restart the server
+        userSelection();
+    });
+};
 
 // Update an Employee Role
 
@@ -97,8 +120,6 @@ const viewAllEmployees = () => {
 // View All Departments
 
 // Add a Department
-
-// Exit
 
 // This will call the userSelection function to start the server
 userSelection();

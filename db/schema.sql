@@ -19,11 +19,11 @@ CREATE TABLE
         id INTEGER PRIMARY KEY AUTO_INCREMENT,
         title VARCHAR(30) NOT NULL,
         salary DECIMAL(10, 2) NOT NULL,
-        department_id INTEGER
+        department_id INTEGER,
         -- This will reference the department table and the id
         -- column in the department table
         Foreign Key (department_id) REFERENCES department(id)
-        ON DELETE SET NULL
+        ON DELETE CASCADE
     );
 
 -- Similarly, this will create an employee table
@@ -33,9 +33,11 @@ CREATE TABLE
         first_name VARCHAR(30) NOT NULL,
         last_name VARCHAR(30) NOT NULL,
         role_id INTEGER,
-        manager_id INTEGER
+        manager_id INTEGER,
         -- This will reference the role table and the id 
         -- column in the role table
         Foreign Key (role_id) REFERENCES role(id)
-        ON DELETE SET NULL
+        ON DELETE CASCADE,
+        Foreign Key (manager_id) REFERENCES employee(id)
+        ON DELETE CASCADE
     );
