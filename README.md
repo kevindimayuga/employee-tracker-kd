@@ -51,30 +51,19 @@ The following steps were taken to complete the project:
 - Add link to video walkthrough on how to use Employee Tracker command-line application
 - Submit URL to GitHub Repo and link to video walkthrough
 
-JavaScript Updates
-```
-// comments were made as needed in the JavaScript file
-```
-
-Node.js Updates
-```
-// comments were made as needed in JavaScript file
-```
-
-MySQL Updates
-```
-// comments were made as needed in JavaScript file
-```
-
 ## Usage
 
 - Clone repo onto local device
 - Open repo in local CLI
-- Make sure node packages are installed by running 'npm i'
-- Run 'npm start' in CLI
-- Select an option from the list
+- Make sure node packages are installed by running `npm i`
+- In the CLI, run `mysql -u root -p` and enter your password
+- Run `SOURCE db/schema.sql` to create the database
+- Run `SOURCE db/seeds.sql` to seed the database with data
+- Run `npm run start` in CLI to start the application
+- Select an option from the list (view all employees, add an employee, update an employee, etc.)
 - Depending on selection, follow prompts or view data from employees database
 - Use and update database for employees as needed to track any necessary information
+- When finished, exit the application by selecting the 'Exit' option
 
 ## Credits
 
@@ -85,17 +74,26 @@ I used the following resources to help guide me to complete the portfolio projec
 - [Professional README Guide](https://coding-boot-camp.github.io/full-stack/github/professional-readme-guide)
 - [Node.js Introduction](https://www.w3schools.com/nodejs/nodejs_intro.asp)
 - [Inquirer.js](https://www.npmjs.com/package/inquirer/v/8.2.4)
-- [Jest](https://www.npmjs.com/package/jest)
 - [MySQL Tutorial](https://www.w3schools.com/MySQL/default.asp)
 - [How to take a full page screenshot with a hidden Chrome shortcut](https://zapier.com/blog/full-page-screenshots-in-chrome/)
 
+
+I referred back to Module 12: SQL to review the activities and mini project as well as used the BCS Xpert Learning Assistant to help guide me to complete this project.
+
 ## License
 
-N/A
+- [MIT](https://opensource.org/license/mit/)
 
 ## Badges
 
-N/A
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![NPM](https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
+![Inquirer](https://img.shields.io/badge/Inquirer.js-%2307405e.svg?style=for-the-badge&logo=Inquirer.js&logoColor=white)
+![Nodemon](https://img.shields.io/badge/NODEMON-%23323330.svg?style=for-the-badge&logo=nodemon&logoColor=%BBDEAD)
+![dotenv](https://img.shields.io/badge/dotenv-%23323330.svg?style=for-the-badge&logo=dotenv&logoColor=%BBDEAD)
 
 ## Features
 
@@ -111,5 +109,6 @@ N/A
 
 ## Contacts
 
-- GitHub: [kevindimayuga](https://github.com/kevindimayuga)
-- Email: k.dimayuga22@gmail.com
+[![GitHub Badge](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=githublogoColor=white)](https://github.com/kevindimayuga)
+[![Linkedin Badge](https://img.shields.io/badge/-LinkedIn-0e76a8?style=for-the-badge&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/kevindimayuga/)
+[![Gmail Badge](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:k.dimayuga22@gmail.com)

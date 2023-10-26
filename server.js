@@ -160,9 +160,9 @@ const addEmployee = () => {
                     const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id)
                     VALUES (?, ?, ?, ?)`;
                     const params = [answers.first_name,
-                        answers.last_name,
-                        answers.role_id,
-                        answers.manager_id
+                    answers.last_name,
+                    answers.role_id,
+                    answers.manager_id
                     ];
                     // This will query the database and insert the new
                     // employee into the employee table
@@ -181,12 +181,141 @@ const addEmployee = () => {
     });
 };
 
-
 // Update an Employee Role
-
+const updateEmployeeRole = () => {
+    // This will query the database and return all employees
+    // because we need to know the employees to populate the choices
+    db.query(`SELECT * FROM employee`, (err, employeeResults) => {
+        if (err) {
+            console.error('Error fetching all employees', err);
+            return;
+        }
+        // This will prompt the user for the employee's information
+        inquirer.prompt([
+            {
+                type: 'list',
+                name: 'employee_id',
+                message: "Which employee's role would you like to update?",
+                // This will use the results from the query to
+                //populate the choices
+                choices: employeeResults.map((employee) => ({
+                    name: `${employee.first_name} ${employee.last_name}`,
+                    value: employee.id
+                }))
+            }
+        ]).then((answers) => {
+            // This will query the database and return all roles
+            // because we need to know the roles to populate the choices
+            db.query(`SELECT * FROM role`, (err, roleResults) => {
+                if (err) {
+                    console.error('Error fetching all roles', err);
+                    return;
+                }
+                inquirer.prompt([
+                    {
+                        type: 'list',
+                        name: 'role_id',
+                        message: "What is the employee's new role?",
+                        // This will use the results from the query to
+                        //populate the choices
+                        choices: roleResults.map((role) => ({
+                            name: role.title,
+                            value: role.id
+                        }))
+                    }
+                ]).then((roleAnswers) => {
+                    // This will add the role_id to the answers object and start the update query
+                    answers.role_id = roleAnswers.role_id;
+                    const sql = `UPDATE employee SET role_id = ?
+                    WHERE id = ?`;
+                    const params = [answers.role_id, answers.employee_id];
+                    // This will query the database and update the employee's role
+                    db.query(sql, params, (err, updateResult) => {
+                        if (err) {
+                            console.error('There is an error updating the employee role', err);
+                            return;
+                        }
+                        console.log('The employee role has been updated!');
+                        // This will call the userSelection function to restart the server
+                        userSelection();
+                    });
+                });
+            });
+        });
+    });
+};
 // View All Roles
+const viewAllRoles = () => {
+    const sql = `SELECT
+        e.first_name,
+        e.last_name,
+        r.id as 'role_id',
+        r.title,
+        d.department_name AS 'department',
+        r.salary,
+        CONCAT(m.first_name, ' ', m.last_name) AS 'manager'
+    FROM
+        employee AS e
+    JOIN
+        role AS r ON e.role_id = r.id
+    JOIN
+        department AS d ON r.department_id = d.id
+    LEFT JOIN
+        employee AS m ON e.manager_id = m.id;`;
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.error('Error fetching all roles', err);
+            return;
+        }
+        console.log('All Roles:');
+        console.table(results);
+        userSelection();
+    });
+};
 
 // Add a Role
+const addRole = () => {
+    const sql = `SELECT * FROM department`;
+    db.query(sql, (err, departmentResults) => {
+        if (err) {
+            console.error('Error fetching all departments', err);
+            return;
+        }
+        inquirer.prompt([
+            {
+                type: 'input',
+                name: 'title',
+                message: "What is the role's title?"
+            },
+            {
+                type: 'input',
+                name: 'salary',
+                message: "What is the role's salary?"
+            },
+            {
+                type: 'list',
+                name: 'department_id',
+                message: "What is the role's department?",
+                choices: departmentResults.map((department) => ({
+                    name: department.department_name,
+                    value: department.id
+                }))
+            }
+        ]).then((answers) => {
+            const sql = `INSERT INTO role (title, salary, department_id)
+            VALUES (?, ?, ?)`;
+            const params = [answers.title, answers.salary, answers.department_id];
+            db.query(sql, params, (err, insertResult) => {
+                if (err) {
+                    console.error('There is an error adding the role', err);
+                    return;
+                }
+                console.log('The role has been added!');
+                userSelection();
+            });
+        });
+    });
+};
 
 // View All Departments
 
