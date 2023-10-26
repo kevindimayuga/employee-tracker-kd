@@ -12,7 +12,6 @@ The motivation behind this project is to create a command-line application from 
 
 - GitHub Repo URL: https://github.com/kevindimayuga/employee-tracker-kd
 - GitHub Pages WebPage Deployment URL: n/a
-- Video Walkthrough Link: 
 
 ## CLI Application Screenshot
 
@@ -20,8 +19,8 @@ The motivation behind this project is to create a command-line application from 
 
 ### Full Video Walkthrough
 
-- Since this will be a command-line application and not a webpage application, you can use the following [LINK]() to access a video walkthrough on how to use the employee tracker command-line application.
-    - [Employee Tracker Video Walkthrough]()
+- Since this will be a command-line application and not a webpage application, you can use the following [LINK](https://drive.google.com/drive/folders/1jS2OM5myagMP4wjCCgkjXToSlFQcyHXK?usp=sharing) to access a video walkthrough on how to use the employee tracker command-line application.
+    - [Employee Tracker Video Walkthrough](https://drive.google.com/drive/folders/1jS2OM5myagMP4wjCCgkjXToSlFQcyHXK?usp=sharing)
 
 ## Table of Contents
 
