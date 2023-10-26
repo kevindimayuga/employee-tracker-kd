@@ -323,6 +323,44 @@ const viewAllDepartments = () => {
 };
 
 // Add a Department
+const addDepartment = () => {
+    const sql = `SELECT * FROM department`;
+    db.query(sql, (err, departmentResults) => {
+        if (err) {
+            console.error('Error fetching all departments', err);
+            return;
+        }
+        inquirer.prompt([
+            {
+                type: 'input',
+                name: 'department_name',
+                message: "What is the department's name?"
+            }
+        ]).then((answers) => {
+            const sql = `INSERT INTO department (department_name)
+            VALUES (?)`;
+            const params = [answers.department_name];
+            db.query(sql, params, (err, insertResult) => {
+                if (err) {
+                    console.error('There is an error adding the department', err);
+                    return;
+                }
+                console.log('The department has been added!');
+                userSelection();
+            });
+        });
+    });
+};
+
+// Update Employee Managers
+
+// View Employees by Manager
+
+// View Employees by Department
+
+// Delete Departments, Roles, and Employees
+
+// View the total utilized budget of a department -- ie the combined salaries of all employees in that department
 
 // This will call the userSelection function to start the server
 userSelection();

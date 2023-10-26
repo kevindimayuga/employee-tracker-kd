@@ -12,15 +12,11 @@ The motivation behind this project is to create a command-line application from 
 
 - GitHub Repo URL: https://github.com/kevindimayuga/employee-tracker-kd
 - GitHub Pages WebPage Deployment URL: n/a
+- Video Walkthrough Link: 
 
-## Webpage Screenshot
+## CLI Application Screenshot
 
-#### CLI application test example:
 ![employee tracker command line example screenshot](./assets/images/Employer%20Tracker%20CLI%20Screenshot.PNG)
-
-### GIF of App Functionality
-
-![]()
 
 ### Full Video Walkthrough
 
@@ -97,7 +93,12 @@ I referred back to Module 12: SQL to review the activities and mini project as w
 
 ## Features
 
-N/A
+Some additional functionality and features I'd like to add to the application include:
+- Update Employee Managers
+- View Employees by Manager
+- View Employees by Department
+- Delete Departments, Roles, and Employees
+- View the total utilized budget of a department -- ie the combined salaries of all employees in that department
 
 ## Contributions
 
