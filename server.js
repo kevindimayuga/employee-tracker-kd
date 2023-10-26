@@ -247,21 +247,12 @@ const updateEmployeeRole = () => {
 // View All Roles
 const viewAllRoles = () => {
     const sql = `SELECT
-        e.first_name,
-        e.last_name,
         r.id as 'role_id',
         r.title,
         d.department_name AS 'department',
-        r.salary,
-        CONCAT(m.first_name, ' ', m.last_name) AS 'manager'
-    FROM
-        employee AS e
-    JOIN
-        role AS r ON e.role_id = r.id
-    JOIN
-        department AS d ON r.department_id = d.id
-    LEFT JOIN
-        employee AS m ON e.manager_id = m.id;`;
+        r.salary
+    FROM role r
+    LEFT JOIN department d ON r.department_id = d.id`;
     db.query(sql, (err, results) => {
         if (err) {
             console.error('Error fetching all roles', err);
@@ -318,6 +309,18 @@ const addRole = () => {
 };
 
 // View All Departments
+const viewAllDepartments = () => {
+    const sql = `SELECT * FROM department`;
+    db.query(sql, (err, results) => {
+        if (err) {
+            console.error('Error fetching all departments', err);
+            return;
+        }
+        console.log('All Departments:');
+        console.table(results);
+        userSelection();
+    });
+};
 
 // Add a Department
 
