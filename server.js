@@ -72,8 +72,8 @@ const userSelection = () => {
 // View All Employees
 const viewAllEmployees = () => {
     // use JOIN to get manager name
-    const sql = 
-    `SELECT
+    const sql =
+        `SELECT
         e.id,
         e.first_name,
         e.last_name,
@@ -106,22 +106,81 @@ const viewAllEmployees = () => {
 
 // Add an Employee
 const addEmployee = () => {
-    const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id)`;
-    const params = [body.first_name, body.last_name, body.role_id, body.manager_id];
-    db.query(sql, params, (err, results) => {
+    // This will query the database and return all roles
+    // because we need to know the roles to populate the choices
+    db.query(`SELECT * FROM role`, (err, roleResults) => {
         if (err) {
-            console.error('Error adding an employee', err);
+            console.error('Error fetching all roles', err);
             return;
         }
-        results.json({
-            message: 'success',
-            data: body
+        // This will prompt the user for the employee's information
+        inquirer.prompt([
+            {
+                type: 'input',
+                name: 'first_name',
+                message: "What is the employee's first name?"
+            },
+            {
+                type: 'input',
+                name: 'last_name',
+                message: "What is the employee's last name?"
+            },
+            {
+                type: 'list',
+                name: 'role_id',
+                message: "What is the employee's role within the company?",
+                // This will use the results from the query to
+                //populate the choices
+                choices: roleResults.map((role) => ({
+                    name: role.title,
+                    value: role.id
+                }))
+            }
+        ]).then((answers) => {
+            // This will fetch a list of employees to serve as manager choices
+            db.query(`SELECT id, first_name, last_name FROM employee`, (err, managerResults) => {
+                if (err) {
+                    console.error('Error fetching employees for manager choices', err);
+                    return;
+                }
+
+                inquirer.prompt([
+                    {
+                        type: 'list',
+                        name: 'manager_id',
+                        message: "Who is the employee's manager?",
+                        choices: managerResults.map((manager) => ({
+                            name: `${manager.first_name} ${manager.last_name}`,
+                            value: manager.id
+                        }))
+                    }
+                ]).then((managerAnswers) => {
+                    // This will add the manager_id to the answers object and start the insert query
+                    answers.manager_id = managerAnswers.manager_id;
+                    const sql = `INSERT INTO employee (first_name, last_name, role_id, manager_id)
+                    VALUES (?, ?, ?, ?)`;
+                    const params = [answers.first_name,
+                        answers.last_name,
+                        answers.role_id,
+                        answers.manager_id
+                    ];
+                    // This will query the database and insert the new
+                    // employee into the employee table
+                    db.query(sql, params, (err, insertResult) => {
+                        if (err) {
+                            console.error('There is an error adding the employee', err);
+                            return;
+                        }
+                        console.log('The employee has been added!');
+                        // This will call the userSelection function to restart the server
+                        userSelection();
+                    });
+                });
+            });
         });
-        console.log('Employee Added!');
-        // This will call the userSelection function to restart the server
-        userSelection();
     });
 };
+
 
 // Update an Employee Role
 
